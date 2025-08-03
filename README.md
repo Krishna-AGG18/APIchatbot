@@ -1,13 +1,3 @@
-# APIchatbot
-
-A `README.md` file is the first thing people see when they visit your repository, so it's a great opportunity to showcase your project. It should be clear, informative, and easy to read.
-
-Here is a comprehensive `README.md` file template for your ASK.IO project, built with the information you provided. You can copy and paste this directly into a file named `README.md` in the root of your project and then customize it with a screenshot and any additional details.
-
------
-
-### **`README.md`**
-
 # ASK.IO 🤖
 
 **A Versatile, Multi-functional Chatbot**
