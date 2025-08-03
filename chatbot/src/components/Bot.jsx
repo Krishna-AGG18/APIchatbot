@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { fetchReply } from '../service/api';
 import DarkVeil from './DarkVeil/DarkVeil';
 import { GoogleGenAI } from "@google/genai";
 
