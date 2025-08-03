@@ -10,7 +10,7 @@ function App() {
     <>
       <div className='w-full min-h-screen relative'>
         <DarkVeil />
-        <div className=' min-h-screen absolute top-0 w-full'>
+        <div className=' xs:min-h-screen absolute top-0 w-full'>
           <nav className='py-8'>
             <div className="flex justify-between items-center px-8 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md w-4/6 mx-auto max-xs:w-9/10 text-white">
               <p className='font-bold '>ASK.IO</p>
