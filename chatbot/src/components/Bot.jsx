@@ -1,6 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { fetchReply } from '../service/api';
 import DarkVeil from './DarkVeil/DarkVeil';
+import { GoogleGenAI } from "@google/genai";
+
+
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const ai = new GoogleGenAI({apiKey});
+// const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
 function Bot() {
   const [messages, setMessages] = useState([]);
@@ -10,19 +16,25 @@ function Bot() {
 
   const handleSend = async () => {
     if (!input.trim()) return;
-
     const newMessage = { sender: 'user', content: input };
     setMessages(prev => [...prev, newMessage]);
-    setInput('');
     setLoading(true);
 
     try {
-      const reply = await fetchReply(input);
-      const ai = { sender: 'AI', content: reply };
-      setMessages(prev => [...prev, ai]);
-    } catch (err) {
+      // const result = await model.generateContent(input);
+      // const text = result.response.text();
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: input,
+      });
+      setInput('')
+      const text = response.candidates[0].content.parts[0].text;
+      console.log(text);
+      const reply = { sender: 'AI', content: text }
+      setMessages(prev => [...prev, reply]);
+    } catch (error) {
+      console.error('Error generating content:', error);
       setMessages(prev => [...prev, { sender: 'AI', content: '⚠️ Error getting response.' }]);
-      console.error('Error fetching reply:', err);
     } finally {
       setLoading(false);
       setTimeout(() => {
@@ -40,7 +52,7 @@ function Bot() {
     <>
       <div className='w-full min-h-screen relative'>
         <DarkVeil hueShift={49}
-/>
+        />
         <div className='bg-transparent mx-auto w-full text-white absolute top-0 min-h-screen p-6'>
           {/* Header */}
           <div className='text-center text-4xl font-bold text-white tracking-wide comic'>
