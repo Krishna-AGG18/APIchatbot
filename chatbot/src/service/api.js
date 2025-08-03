@@ -7,7 +7,7 @@ export  async function  fetchReply(messgae) {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${API_KEY}`,
-        "HTTP-Referer": "http://localhost",  // Change to your actual domain on deploy
+        "HTTP-Referer": "http://askio.netlify.app",  // Change to your actual domain on deploy
         "X-Title": "My AI Chatbot"
       },
       body: JSON.stringify({
